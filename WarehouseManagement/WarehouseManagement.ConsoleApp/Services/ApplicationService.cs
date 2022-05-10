@@ -17,21 +17,31 @@ namespace WarehouseManagement.ConsoleApp.Services
         {
             if (command.StartsWith("Add"))
             {
-                _warehouseService.Add();
+                string[] splitCommand = command.Split(' ');
+
+                _warehouseService.Add(splitCommand[1], splitCommand[2]);
             }
-            if (command.StartsWith("Remove"))
+            else if (command.StartsWith("Remove"))
             {
-                _warehouseService.Remove();
+                string[] splitCommand = command.Split(' ');
+
+                _warehouseService.Remove(splitCommand[1]);
             }
-            if (command.StartsWith("List"))
+            else if (command.StartsWith("List"))
             {
-                
+                List<WarehouseItem> items = _warehouseService.GetAll();
+
+                foreach(var item in items)
+                {
+                    Console.WriteLine($"Item name: {item.Name}  Item price: {item.Price}");
+                }
             }
-            if (command.StartsWith("Exit"))
+            else if (command.StartsWith("Exit"))
             {
                 return;
             }
-            Console.WriteLine("Incorrect command");
+            else
+                Console.WriteLine("Incorrect command");
             // Interpret if command is valid
             // Parse the command type and information
             // Call appropriate WarehouseService command
