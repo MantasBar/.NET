@@ -9,17 +9,19 @@ namespace ShopItemLists.Services
 {
     public class ShopServices
     {
-        List<string> _cart = new List<string>();
-        decimal Balance = 20;
+        //List<string> _cart = new List<string>();
+        Customer _customer; 
+        //decimal Balance = 20;
 
         List <ShopItem> _items = new List<ShopItem>();
         public ShopServices()
         {
             _items = new List<ShopItem>();
+            _customer = new Customer();
         }
         public void Add(string name, decimal price, int quantity)
         {
-            ShopItem item = new ShopItem()
+            ShopItem item = new ShopItem
             {
                 Name = name,
                 Price = price,
@@ -46,16 +48,20 @@ namespace ShopItemLists.Services
         public void Set(string name, int quantity)
         {
             ShopItem item = _items.Single(i => i.Name == name);
+            if(item == null)
+            {
+                throw new Exception("The item is not found")
+            }
             item.Quantity = quantity;
         }
         public void ShowBalance()
         {
-            Console.WriteLine("Balance: " + Balance);
+            Console.WriteLine(_customer.Balance);
         }
         public void Topup(decimal top)
         {
-            Balance += top;
-            Console.WriteLine($"Topped up balance: {Balance}");
+            _customer.Balance += top;
+            Console.WriteLine($"Topped up balance: {_customer.Balance}");
         }
         public void Buy(string name, int quantity)
         {
@@ -63,11 +69,13 @@ namespace ShopItemLists.Services
             {
                 if(_items.Any(i => i.Quantity >= quantity) && quantity > 0)
                 {
-                    if(_items.Any(i => (i.Price * quantity) <= Balance))
+                    if(_items.Any(i => (i.Price * quantity) <= _customer.Balance))
                     {
-                        _cart.Add(name);
+                        _customer.Cart.Add(name);
+
                         decimal price = _items.Find(i => i.Name == name).Price;
-                        Balance -= (price * quantity);
+                        _customer.Balance -= (price * quantity);
+
                         ShopItem item = _items.FirstOrDefault(i => i.Name == name);
                         item.Quantity -= quantity;
                     }
@@ -88,7 +96,7 @@ namespace ShopItemLists.Services
         }
         public void ShowCart()
         {
-            _cart.ForEach(i => Console.WriteLine($"Name: {i}"));
+            _customer.Cart.ForEach(i => Console.WriteLine($"Name: {i}"));
         }
     }
 }

@@ -16,6 +16,7 @@ namespace ShopItemLists.Services
         }
         public void Process(string command)
         {
+            command = command.ToLower();
             if (command.ToLower().StartsWith("add"))
             {
                 try
@@ -83,7 +84,10 @@ namespace ShopItemLists.Services
             {
                 _services.ShowCart();
             }
-
+            else if (command.ToLower().StartsWith("exit"))
+            {
+                Environment.Exit(0);
+            }
             else
             {
                 Console.WriteLine("The command was not recognized");

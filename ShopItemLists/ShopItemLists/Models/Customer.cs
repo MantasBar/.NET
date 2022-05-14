@@ -8,7 +8,7 @@ namespace ShopItemLists.Models
 {
     public class Customer
     {
-        public decimal Money { get; set; }
-        public List<ShopItem> Basket { get; set; }
+        public decimal Balance { get; set; } = 20;
+        public List<string> Cart { get; set; }
     }
 }
