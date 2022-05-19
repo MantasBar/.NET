@@ -9,6 +9,6 @@ namespace ShopItemLists.Models
     public class Customer
     {
         public decimal Balance { get; set; } = 20;
-        public List<string> Cart { get; set; }
+        public List<ShopItem> Cart { get; set; } = new List<ShopItem> { };
     }
 }

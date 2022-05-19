@@ -18,9 +18,19 @@ namespace RazorMVC.Controllers
             _logger = logger;
         }
 
+        public IActionResult Register()
+        {
+            RegisterModel registerModel = new RegisterModel();
+            return View(registerModel);
+        }
+
         public IActionResult AboutMe()
         {
-            AboutMeModel aboutMe = new AboutMeModel();
+            AboutMeModel aboutMe = new AboutMeModel
+            {
+                Forename = "Mantas",
+                Surname = "Baranauskas"
+            };
             return View(aboutMe);
         }
 

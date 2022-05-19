@@ -1,0 +1,14 @@
+﻿@model RegisterModel
+
+<h2>Register</h2>
+
+@using (Html.BeginForm("SendSubmitData", "Home", FormMethod.Post))
+{
+    @Html.LabelFor(a => a.Firstname)
+    @Html.TextBoxFor(a => a.Firstname)
+
+    @Html.LabelFor(a => a.Lastname)
+    @Html.TextBoxFor(a => a.Lastname)
+
+    <input type="submit" value="Submit"/>
+}
