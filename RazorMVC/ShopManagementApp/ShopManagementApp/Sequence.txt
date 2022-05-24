@@ -1,0 +1,12 @@
+﻿1. Item Model +
+2. Create Shop Service and required methods:
+	2.1. GetAll()
+	2.2. Add()
+	2.3. Remove()
+3. create Shop Controller
+4. Create required pages in Views (index.cshtml / add.cshtml)
+	4.1. Index - create a header and a table to list all items
+	4.2. Add - create a form to add an item to the list using bootstrap
+		4.2.1. Modify the form accordingly and add ACTION and METHOD = "Post"
+5. Add required navbar items
+

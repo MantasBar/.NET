@@ -1,0 +1,9 @@
+﻿1. Add NuGets: EF Core, EF Core tools, EF sql server.
+2. Add Connection string to appsettings.json
+3. Create DataContext.cs and add inheritance : DbContext
+	3.1. Create an object list with get set ("public List<todo> { get; set; }")
+4. modify startup to configure connection to database 
+5. add Service method with dataContext constructor
+6. When ready for migration: tools -> NuGet package manager -> package manager console
+	6.1. add-migration name - creates migration preview
+	6.2. update-database - updates database with changes made
