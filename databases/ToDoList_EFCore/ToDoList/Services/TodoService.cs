@@ -8,11 +8,11 @@ using ToDoList.Models;
 
 namespace ToDoList.Services
 {
-    public class TodosService
+    public class TodoService
     {
         private DataContext _dataContext;
 
-        public TodosService(DataContext dataContext)
+        public TodoService(DataContext dataContext)
         {
             _dataContext = dataContext;
         }

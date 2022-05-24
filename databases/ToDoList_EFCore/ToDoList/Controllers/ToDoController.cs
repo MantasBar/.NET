@@ -11,8 +11,9 @@ namespace ToDoList.Controllers
 {
     public class ToDoController : Controller
     {
-        private TodosService _todosService;
-        public ToDoController(TodosService todosService)
+        private TodoService _todosService;
+
+        public ToDoController(TodoService todosService)
         {
             _todosService = todosService;
         }

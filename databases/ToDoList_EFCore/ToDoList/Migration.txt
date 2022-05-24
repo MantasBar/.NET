@@ -7,3 +7,9 @@
 6. When ready for migration: tools -> NuGet package manager -> package manager console
 	6.1. add-migration name - creates migration preview
 	6.2. update-database - updates database with changes made
+7. Create user model and properties
+8. Create User controller
+9. Create User Service
+10. Add DbSet<User> to DataContext
+11. Add and modify views for user
+12. Add userService to startup
