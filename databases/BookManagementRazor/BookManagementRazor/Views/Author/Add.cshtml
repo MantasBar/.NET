@@ -1,0 +1,13 @@
+﻿@model Author
+
+<h2>Add Author</h2>
+
+@using (Html.BeginForm("Add", "Author", FormMethod.Post))
+{
+    <div class="form-group">
+        @Html.LabelFor(a => a.FullName)
+        @Html.TextBoxFor(a => a.FullName, "", new {@class = "form-control"})
+    </div>
+        
+    <input class="btn btn-primary" type="submit" value="Submit"/>
+}

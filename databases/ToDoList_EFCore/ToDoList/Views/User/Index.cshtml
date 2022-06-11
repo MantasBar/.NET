@@ -1,5 +1,5 @@
-﻿@using ToDoList.Models
-@model List<User>
+﻿@using ToDoList.Dtos
+@model List<UserDto>
 
 <h3>Testing todo's</h3>
 
@@ -7,17 +7,17 @@
   <thead>
     <tr>
       <th scope="col">#</th>
-      <th scope="col">Name</th>
-      <th scope="col">Category</th>
+      <th scope="col">Full Name</th>
+      <th scope="col">Actions</th>
     </tr>
   </thead>
   <tbody>
-    @foreach (var todo in @Model)
+    @foreach (var user in @Model)
     {
     <tr>
         <th scope="row"></th>
-        <td>@todo.FirstName</td>
-        <td>@todo.LastName</td>
+        <td>@user.FullName</td>
+        <td>@Html.ActionLink("Remove", "Delete", "User", new { Id = @user.Id })</td>
     </tr>
     }
   </tbody>

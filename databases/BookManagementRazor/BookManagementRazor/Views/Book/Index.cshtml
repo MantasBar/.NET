@@ -1,0 +1,26 @@
+﻿@using BookManagementRazor.Dtos
+@model List<BookDto>
+
+<h3>Book list</h3>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+@*      <th scope="col">Author</th>*@
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    @foreach (var book in @Model)
+    {
+    <tr>
+        <th scope="row"></th>
+        <td>@book.Name</td>
+@*        <td>@String.Join(";", @book.Authors.Select(b => b.FullName))</td>*@
+        <td>@Html.ActionLink("Remove", "Remove", "Book", new { Id = @book.Id })</td>
+    </tr>
+    }
+  </tbody>
+</table>

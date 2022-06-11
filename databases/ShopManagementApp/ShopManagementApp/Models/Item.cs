@@ -1,12 +1,12 @@
 ﻿using System;
 
-namespace ShopManagementApp.Models
+namespace ShopManagementApp.Models;
+
+public class Item
 {
-    public class Item
-    {
-        public int ID { get; set; }
-        public string Name { get; set; }
-        public string ShopName { get; set; }
-        public DateTime ExpiryDate { get; set; }
-    }
+    public int ID { get; set; }
+    public string Name { get; set; }
+    public DateTime ExpiryDate { get; set; }
+    public Shop Shop { get; set; }
+    public int? ShopId { get; set; }
 }

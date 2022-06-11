@@ -2,41 +2,40 @@
 using ShopManagementApp.Models;
 using ShopManagementApp.Services;
 
-namespace ShopManagementApp.Controllers
+namespace ShopManagementApp.Controllers;
+
+public class ShopController : Controller
 {
-    public class ShopController : Controller
+    private ShopService _shopService;
+
+    public ShopController(ShopService shopService)
     {
-        private ShopService _shopService;
+        _shopService = shopService;
+    }
+    
+    public IActionResult Index()
+    {
+        var items = _shopService.GetAll();
+        return View(items);
+    }
 
-        public ShopController(ShopService shopService)
-        {
-            _shopService = shopService;
-        }
+    [HttpGet]
+    public IActionResult Add()
+    {
+        Shop shop = new Shop();
+        return View(shop);
+    }
 
-        public IActionResult Index()
-        {
-            var items = _shopService.GetAll();
-            return View(items);
-        }
+    [HttpPost]
+    public IActionResult Add(Shop shop)
+    {
+        _shopService.Add(shop);
+        return RedirectToAction("Index");
+    }
 
-        [HttpGet]
-        public IActionResult Add()
-        {
-            Item item = new Item();
-            return View();
-        }
-
-        [HttpPost]
-        public IActionResult Add(Item item)
-        {
-            _shopService.Add(item);
-            return RedirectToAction("Index");
-        }
-
-        public IActionResult Delete(string name)
-        {
-            _shopService.Delete(name);
-            return RedirectToAction("Index");
-        }
+    public IActionResult Delete(string name)
+    {
+        _shopService.Delete(name);
+        return RedirectToAction("Index");
     }
 }

@@ -9,9 +9,9 @@ namespace ShopManagementApp.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        private ShopService _shopService;
+        private ItemService _shopService;
 
-        public HomeController(ILogger<HomeController> logger, ShopService shopService)
+        public HomeController(ILogger<HomeController> logger, ItemService shopService)
         {
             _logger = logger;
             _shopService = shopService;

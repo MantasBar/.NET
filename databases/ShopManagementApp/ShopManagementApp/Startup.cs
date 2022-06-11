@@ -27,6 +27,8 @@ namespace ShopManagementApp
 
             services.AddDbContext<DataContext>(c => c.UseSqlServer(defaultConnectionString));
 
+            services.AddTransient<ItemService>();
+
             services.AddTransient<ShopService>();
         }
 

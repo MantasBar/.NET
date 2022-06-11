@@ -1,17 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using ToDoList.Models.Base;
 
 namespace ToDoList.Models
 {
-    public class User
+    public class User : Entity
     {
-        public int Id { get; set; }
-
         public string FirstName { get; set; }
 
         public string LastName { get; set; }
+
+        public List<Todo> Todos { get; set; }
     }
 }

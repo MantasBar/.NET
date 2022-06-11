@@ -1,26 +1,27 @@
-﻿@model List<Item>;
+﻿@using ShopManagementApp.Dtos
+@model List<ShopDto>;
 
-<h3>Testing shop</h3>
+<h3>Shops list</h3>
 
 <table class="table">
   <thead>
     <tr>
       <th scope="col">#</th>
-      <th scope="col">Name</th>
+      <th scope="col">ID</th>
       <th scope="col">Shop Name</th>
-      <th scope="col">Exp. Date</th>
+      <th scope="col">Items</th>
       <th scope="col">Actions</th>
     </tr>
   </thead>
   <tbody>
-    @foreach (var item in @Model)
+    @foreach (ShopDto shop in @Model)
     {
     <tr>
         <th scope="row"></th>
-        <td>@item.Name</td>
-        <td>@item.ShopName</td>
-        <td>@item.ExpiryDate</td>
-        <td>@Html.ActionLink("Remove", "Delete", "Shop", new { Name = item.Name })</td>
+        <td>@shop.Id</td>
+        <td>@shop.Name</td>
+        <td>@string.Join(";", @shop.Items.Select(x => x.Item.Name))</td>
+        <td>@Html.ActionLink("Remove", "Delete", "Shop", new { id = shop.Id })</td>
     </tr>
     }
   </tbody>

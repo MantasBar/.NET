@@ -1,0 +1,24 @@
+﻿@using ShopManagementApp.Dtos
+@model ItemDto
+
+<h2>Add Item</h2>
+
+<form action="/Item/Add" method="post">
+  <div class="form-group">
+    <label for="Item_Name">Shop Item</label>
+    <input type="text" class="form-control" id="Item_Name" name="Item.Name" placeholder="Enter shop item">
+  </div>
+  <div class="form-group">
+    <label for="Item_ExpiryDate">Item expiry date</label>
+    <input type="date" class="form-control" id="Item_ExpiryDate" name="Item.ExpiryDate" placeholder="Enter expiry date">
+  </div>
+  <div class="form-group">
+    <label for="Item_ShopId">Shop ID</label>
+    <input type="text" class="form-control" id="Item_ShopId" name="Item.ShopId" placeholder="Enter shop ID">
+  </div>
+  <select class="form-select" aria-label="Default select example">
+    <option selected>Choose shop ID</option>
+    <option></option>
+  </select>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>

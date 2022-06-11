@@ -4,7 +4,7 @@
 
 namespace ShopManagementApp.Migrations
 {
-    public partial class ShopItem : Migration
+    public partial class maybeUpdate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

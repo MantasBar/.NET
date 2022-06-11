@@ -12,7 +12,7 @@ using ShopManagementApp.Data;
 namespace ShopManagementApp.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20220524162656_Init")]
+    [Migration("20220526103524_Init")]
     partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -38,12 +38,44 @@ namespace ShopManagementApp.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ShopName")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int?>("ShopId")
+                        .HasColumnType("int");
 
                     b.HasKey("ID");
 
+                    b.HasIndex("ShopId");
+
                     b.ToTable("Items");
+                });
+
+            modelBuilder.Entity("ShopManagementApp.Models.Shop", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Shops");
+                });
+
+            modelBuilder.Entity("ShopManagementApp.Models.Item", b =>
+                {
+                    b.HasOne("ShopManagementApp.Models.Shop", "Shop")
+                        .WithMany("Items")
+                        .HasForeignKey("ShopId");
+
+                    b.Navigation("Shop");
+                });
+
+            modelBuilder.Entity("ShopManagementApp.Models.Shop", b =>
+                {
+                    b.Navigation("Items");
                 });
 #pragma warning restore 612, 618
         }

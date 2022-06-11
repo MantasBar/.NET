@@ -1,10 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ToDoList.Models;
+using TodoList.Dtos;
 using ToDoList.Services;
 
 namespace ToDoList.Controllers
@@ -12,10 +7,12 @@ namespace ToDoList.Controllers
     public class ToDoController : Controller
     {
         private TodoService _todosService;
+        private UserService _userService;
 
-        public ToDoController(TodoService todosService)
+        public ToDoController(TodoService todosService, UserService userService)
         {
             _todosService = todosService;
+            _userService = userService;
         }
 
         public IActionResult Index()
@@ -27,14 +24,16 @@ namespace ToDoList.Controllers
         [HttpGet]
         public IActionResult Add()
         {
-            Todo todo = new Todo();
-            return View();
+            CreateTodoDto todo = new CreateTodoDto();
+            todo.Todo = new Models.Todo();
+            todo.Users = _userService.GetAll();
+            return View(todo);
         }
 
         [HttpPost]
-        public IActionResult Add(Todo todo)
+        public IActionResult Add(CreateTodoDto createTodo)
         {
-            _todosService.Add(todo);
+            _todosService.Add(createTodo.Todo);
             return RedirectToAction("Index");
         }
 

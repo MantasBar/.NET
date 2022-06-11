@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using ToDoList.Data;
 using ToDoList.Models;
 
@@ -17,22 +14,6 @@ namespace ToDoList.Services
             _dataContext = dataContext;
         }
 
-        private List<Todo> _todos = new List<Todo>()
-        {
-            new Todo()
-            {
-                Category = "Studying",
-                CreatedUtc = System.DateTime.Now,
-                Name = "Study Programming"
-            },
-            new Todo()
-            {
-                Category = "House",
-                CreatedUtc = System.DateTime.Now,
-                Name = "Clean Room"
-            }
-        };
-
         public List<Todo> GetAll()
         {
             return _dataContext.Todos.ToList();
@@ -40,6 +21,7 @@ namespace ToDoList.Services
 
         public void Add(Todo todo)
         {
+            todo.CreatedUtc = System.DateTime.Now;
             _dataContext.Todos.Add(todo);
             _dataContext.SaveChanges();
         }
